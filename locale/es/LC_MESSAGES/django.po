@@ -1,0 +1,357 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-23 11:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: clients/models.py:7 devices/models.py:17 vehicles/models.py:39
+#: vehicles_groups/models.py:9
+msgid "Inactive"
+msgstr ""
+
+#: clients/models.py:7 devices/models.py:17 vehicles/models.py:39
+#: vehicles_groups/models.py:9
+msgid "Active"
+msgstr ""
+
+#: clients/models.py:11 devices/models.py:41 vehicles_groups/models.py:21
+msgid "User"
+msgstr ""
+
+#: clients/models.py:14
+msgid "Commercial Name"
+msgstr ""
+
+#: clients/models.py:15
+msgid "CIF Number"
+msgstr ""
+
+#: clients/models.py:17
+msgid "Commercial Email"
+msgstr ""
+
+#: clients/models.py:18 profiles/models.py:30
+msgid "Phone Number"
+msgstr ""
+
+#: clients/models.py:19 profiles/models.py:19
+msgid "Address"
+msgstr ""
+
+#: clients/models.py:21 profiles/models.py:33
+msgid "Zip Code"
+msgstr ""
+
+#: clients/models.py:22 profiles/models.py:26
+msgid "Country"
+msgstr ""
+
+#: clients/models.py:24 profiles/models.py:25
+msgid "City"
+msgstr ""
+
+#: clients/models.py:26 profiles/models.py:22
+msgid "Avatar"
+msgstr ""
+
+#: clients/models.py:27 profiles/models.py:32
+msgid "Website"
+msgstr ""
+
+#: clients/models.py:29 devices/models.py:39 vehicles/models.py:73
+#: vehicles_groups/models.py:15
+msgid "Description"
+msgstr ""
+
+#: clients/models.py:31 devices/models.py:37 profiles/models.py:38
+#: vehicles/models.py:75 vehicles_groups/models.py:19
+msgid "Status"
+msgstr ""
+
+#: clients/models.py:33 devices/models.py:45 traces/models.py:68
+#: vehicles/models.py:89 vehicles_groups/models.py:28
+msgid "Created Date"
+msgstr ""
+
+#: clients/models.py:35 devices/models.py:48 traces/models.py:70
+#: vehicles/models.py:91 vehicles_groups/models.py:30
+msgid "Modified Date"
+msgstr ""
+
+#: clients/models.py:45 profiles/models.py:11 vehicles/models.py:84
+msgid "Client"
+msgstr "Cliente"
+
+#: clients/models.py:46
+msgid "Clients"
+msgstr "Clientes"
+
+#: devices/models.py:21
+msgid "Imei"
+msgstr "Imei"
+
+#: devices/models.py:23
+msgid "SIM Phone"
+msgstr "Tarjeta SIM"
+
+#: devices/models.py:25
+msgid "Password"
+msgstr "Contraseña"
+
+#: devices/models.py:28
+msgid "Type Device"
+msgstr ""
+
+#: devices/models.py:31
+msgid "Model Device"
+msgstr ""
+
+#: devices/models.py:34
+msgid "Firmware Device"
+msgstr ""
+
+#: devices/models.py:50
+msgid "ID Unit"
+msgstr ""
+
+#: devices/models.py:57 devices/models.py:58 vehicles/models.py:80
+msgid "Devices"
+msgstr ""
+
+#: mapanare/settings.py:151
+msgid "Spanish"
+msgstr "Español"
+
+#: mapanare/settings.py:152
+msgid "English"
+msgstr "Ingles"
+
+#: profiles/models.py:11
+msgid "User Query"
+msgstr ""
+
+#: profiles/models.py:11
+msgid "Mechanic"
+msgstr ""
+
+#: profiles/models.py:12
+msgid "Pilot"
+msgstr ""
+
+#: profiles/models.py:12
+msgid "Technicnas"
+msgstr ""
+
+#: profiles/models.py:23
+msgid "Birth Date"
+msgstr ""
+
+#: profiles/models.py:29
+msgid "Organization"
+msgstr ""
+
+#: profiles/models.py:31
+msgid "Time Zone"
+msgstr ""
+
+#: profiles/models.py:34 vehicles/models.py:49 vehicles_groups/models.py:13
+msgid "Nickname"
+msgstr ""
+
+#: profiles/models.py:36
+msgid "Age"
+msgstr ""
+
+#: traces/models.py:10
+msgid "Trace Type"
+msgstr ""
+
+#: traces/models.py:12
+msgid "Device"
+msgstr "Dispositivo"
+
+#: traces/models.py:15
+msgid "Date GPS"
+msgstr ""
+
+#: traces/models.py:17
+msgid "Time GPS"
+msgstr ""
+
+#: traces/models.py:19
+msgid "Time Received"
+msgstr ""
+
+#: traces/models.py:21
+msgid "Tiemstamp"
+msgstr ""
+
+#: traces/models.py:24
+msgid "Coordinates"
+msgstr ""
+
+#: traces/models.py:26
+msgid "GPS Accuracy"
+msgstr ""
+
+#: traces/models.py:29
+msgid "Speed"
+msgstr ""
+
+#: traces/models.py:31
+msgid "Azimuth"
+msgstr ""
+
+#: traces/models.py:34
+msgid "Odometer"
+msgstr ""
+
+#: traces/models.py:38
+msgid "Ignition Time Count"
+msgstr ""
+
+#: traces/models.py:40
+msgid "Backup Battery"
+msgstr ""
+
+#: traces/models.py:43
+msgid "Orientation"
+msgstr ""
+
+#: traces/models.py:46
+msgid "Satellites Used"
+msgstr ""
+
+#: traces/models.py:49
+msgid "Satellites Seen"
+msgstr ""
+
+#: traces/models.py:52
+msgid "GPRS Status"
+msgstr ""
+
+#: traces/models.py:55
+msgid "Ignition"
+msgstr ""
+
+#: traces/models.py:58
+msgid "Frame"
+msgstr ""
+
+#: traces/models.py:61
+msgid "Altitude"
+msgstr ""
+
+#: traces/models.py:64
+msgid "Direction"
+msgstr ""
+
+#: traces/models.py:76 traces/models.py:77
+msgid "Traces"
+msgstr ""
+
+#: vehicles/models.py:42
+msgid "Ign OFF"
+msgstr ""
+
+#: vehicles/models.py:42
+msgid "Ign ON"
+msgstr ""
+
+#: vehicles/models.py:42
+msgid "Driving"
+msgstr ""
+
+#: vehicles/models.py:43
+msgid "W/o Coverage"
+msgstr ""
+
+#: vehicles/models.py:51
+msgid "Type"
+msgstr ""
+
+#: vehicles/models.py:53
+msgid "Category"
+msgstr ""
+
+#: vehicles/models.py:54
+msgid "Model"
+msgstr ""
+
+#: vehicles/models.py:55
+msgid "Serie"
+msgstr ""
+
+#: vehicles/models.py:57
+msgid "Registration Number"
+msgstr ""
+
+#: vehicles/models.py:59
+msgid "Manufacturing Year"
+msgstr ""
+
+#: vehicles/models.py:61
+msgid "Manufacturer"
+msgstr ""
+
+#: vehicles/models.py:63
+msgid "Engines Type"
+msgstr ""
+
+#: vehicles/models.py:65
+msgid "Engines Model"
+msgstr ""
+
+#: vehicles/models.py:67
+msgid "Fuel Type"
+msgstr ""
+
+#: vehicles/models.py:68
+msgid "Fuel Capacity"
+msgstr ""
+
+#: vehicles/models.py:69
+msgid "Fuel Autonomy"
+msgstr ""
+
+#: vehicles/models.py:71
+msgid "Number Seats"
+msgstr ""
+
+#: vehicles/models.py:78
+msgid "Status Drive"
+msgstr ""
+
+#: vehicles/models.py:97
+msgid "Vehicle"
+msgstr ""
+
+#: vehicles/models.py:98 vehicles_groups/models.py:25
+msgid "Vehicles"
+msgstr ""
+
+#: vehicles_groups/models.py:17
+msgid "Color"
+msgstr ""
+
+#: vehicles_groups/models.py:36
+msgid "Vehicle Group"
+msgstr ""
+
+#: vehicles_groups/models.py:37
+msgid "Vehicle Groups"
+msgstr ""
