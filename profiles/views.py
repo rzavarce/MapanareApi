@@ -1,23 +1,14 @@
-from django.shortcuts import render
-from .forms import UserProfileAddForm
+from .models import Profile
+from .serializers import ProfileSerializer
+from rest_framework import generics
 
 
-def UserProfileAddView(request):
-    form = UserProfileAddForm()
-    return render(request, 'profiles/add_form.html', {'form': form})
+class ProfileList(generics.ListCreateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
 
-def UserProfile(request):
-    form = UserProfileAddForm(request.POST or None)
-
-    msg = None
-
-    if request.method == "POST":
-
-        if form.is_valid():
-            form.save()
-        else:
-            msg = 'Error validating the form'
-
-    return render(request, "profiles.html", {"form": form, "msg": msg})
+class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 

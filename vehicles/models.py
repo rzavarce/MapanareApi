@@ -2,8 +2,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django import forms
 from django.utils import timezone
-from django.core.validators import MaxLengthValidator, \
-    MinLengthValidator
+from django.core.validators import MaxValueValidator
+from simple_history.models import HistoricalRecords
 from django.utils.translation import gettext_lazy as _
 
 TYPE = (('TYPE01', 'TYPE01'),
@@ -36,7 +36,7 @@ FUEL_TYPE = (('FULL_TYPE01', 'FULL_TYPE01'),
              ('FULL_TYPE04', 'FULL_TYPE04'),
              )
 
-STATUS = (('0', _('Inactive')), ('1', _('Active')))
+STATUS = ((0, _('Inactive')), (1, _('Active')))
 
 STATUS_DRY = (
 ("Ign OFF", _("Ign OFF")), ("Ign ON", _("Ign ON")), ("Driving", _("Driving")),
@@ -51,29 +51,39 @@ class Vehicles(models.Model):
                             verbose_name=_('Type'))
     category = models.CharField(max_length=150, choices=CATEGORY,
                                 verbose_name=_('Category'))
-    model = models.CharField(max_length=150, verbose_name=_('Model'))
-    serie = models.CharField(max_length=150, verbose_name=_('Serie'))
-    registration_number = models.CharField(max_length=150, verbose_name=_(
-        'Registration Number'))
+    model = models.CharField(blank=True, null=True, max_length=150,
+                             verbose_name=_('Model'))
+    serie = models.CharField(blank=True, null=True, max_length=150,
+                             verbose_name=_('Serie'))
+    registration_number = models.CharField(
+        blank=True, null=True, max_length=150,
+        verbose_name=_('Registration Number'))
     manufacturing_year = models.PositiveIntegerField(
-        verbose_name=_('Manufacturing Year'))
-    manufacturer = models.CharField(max_length=150,
+        blank=True, null=True, verbose_name=_('Manufacturing Year'))
+    manufacturer = models.CharField(blank=True, null=True, max_length=150,
                                     verbose_name=_('Manufacturer'))
-    engines_type = models.CharField(max_length=150, choices=ENGINE_TYPE,
-                                    verbose_name=_('Engines Type'))
-    engines_models = models.CharField(max_length=150,
-                                      verbose_name=_('Engines Model'))
-    fuel_type = models.CharField(max_length=150, choices=FUEL_TYPE,
-                                 verbose_name=_('Fuel Type'))
-    fuel_capacity = models.PositiveIntegerField(verbose_name=_('Fuel Capacity'))
-    fuel_autonomy = models.PositiveIntegerField(verbose_name=_('Fuel Autonomy'))
+    engine_type = models.CharField(blank=True, null=True, max_length=150,
+                                   choices=ENGINE_TYPE,
+                                   verbose_name=_('Engines Type'))
+    engine_model = models.CharField(blank=True, null=True, max_length=150,
+                                    verbose_name=_('Engines Model'))
+    fuel_type = models.CharField(blank=True, null=True, max_length=150,
+                                 choices=FUEL_TYPE, verbose_name=_('Fuel Type'))
+    fuel_capacity = models.PositiveIntegerField(blank=True, null=True,
+                                                verbose_name=_('Fuel Capacity'))
+    fuel_autonomy = models.PositiveIntegerField(blank=True, null=True,
+                                                verbose_name=_('Fuel Autonomy'))
 
-    number_seats = models.PositiveIntegerField(verbose_name=_('Number Seats'))
+    number_seats = models.PositiveIntegerField(blank=True, null=True,
+                                               verbose_name=_('Number Seats'))
 
-    description = models.TextField(verbose_name=_('Description'))
-    status = models.CharField(max_length=150, choices=STATUS,
-                              verbose_name=_('Status'))
-    status_dry = models.CharField(max_length=150, default="Ign OFF",
+    description = models.TextField(blank=True, null=True,
+                                   verbose_name=_('Description'))
+
+    status = models.BooleanField(default=False, verbose_name=_('Status'))
+
+    status_dry = models.CharField(blank=True, null=True, max_length=150,
+                                  default="Ign OFF",
                                   choices=STATUS_DRY,
                                   verbose_name=_('Status Drive'))
 
@@ -84,6 +94,8 @@ class Vehicles(models.Model):
     client = models.ForeignKey('clients.Client', verbose_name=_('Client'),
                                blank=True, null=True,
                                on_delete=models.CASCADE, )
+
+    history = HistoricalRecords()
 
     created_date = models.DateTimeField(default=timezone.now,
                                         verbose_name=_('Created Date'))

@@ -54,5 +54,5 @@ class Device(models.Model):
         return str(self.device_imei)
 
     class Meta:
-        verbose_name = _('Devices')
+        verbose_name = _('Device')
         verbose_name_plural = _('Devices')

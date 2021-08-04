@@ -1,8 +1,7 @@
-# -*- encoding: utf-8 -*-
 from django.urls import path
-
-from .views import UserProfile
+from profiles import views
 
 urlpatterns = [
-    path('profiles/', UserProfile, name='user_profile'),
+    path('profiles/', views.ProfileList.as_view()),
+    path('profiles/<int:pk>/', views.ProfileDetail.as_view()),
 ]

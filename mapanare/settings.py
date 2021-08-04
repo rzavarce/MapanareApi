@@ -12,12 +12,19 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-from datetime import datetime
+
+from datetime import datetime, timedelta
+
+from decouple import config
+
 
 # from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+SITE_URL = 'http://localhost:8000'
+FRONT_URL = "http://localhost:8080"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -41,10 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'simple_history',
 
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_jwt',
+    # 'rest_framework_jwt.blacklist',
+    'django_rest_passwordreset',
     'jsonfield',
     'leaflet',
     'djgeojson',
@@ -52,11 +63,11 @@ INSTALLED_APPS = [
     'datetimewidget',
     'phonenumber_field',
 
+    'register',
     'clients',
     'countries',
     'devices',
     'profiles',
-    'subscriptions',
     'traces',
     'vehicles',
     'vehicles_groups',
@@ -74,6 +85,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'mapanare.urls'
@@ -83,7 +95,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -162,6 +174,63 @@ LOCALE_PATHS = (
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [
+    'authorization',
+    'content-type',
+    'x-csrftoken'
+]
+CORS_ORIGIN_WHITELIST = [
+    # TODO - set this properly for production
+    'http://127.0.0.1:8080',
+    'http://localhost:8080',
+    'http://0.0.0.0:8080',
+]
+
+'''
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        # By default we set everything to admin,
+        #   then open endpoints on a case-by-case basis
+        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAdminUser',
+    ],
+    'TEST_REQUEST_RENDERER_CLASSES': (
+        'rest_framework.renderers.MultiPartRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer'
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20,
+}
+'''
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 20,
+}
+
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(hours=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+}
 
 LEAFLET_CONFIG = {
     # 'SPATIAL_EXTENT': (5.0, 44.0, 7.5, 46)
@@ -196,13 +265,17 @@ SERIALIZATION_MODULES = {
 }
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = 'GesVol.2018'
-EMAIL_HOST_USER = 'gesvol.test1@gmail.com'
+EMAIL_HOST_PASSWORD = 'sngwvxcunuuefely'
+EMAIL_HOST_USER = 'mapanaredev@gmail.com'
+#EMAIL_HOST_USER = config('USER_MAIL')
+#EMAIL_HOST_PASSWORD = config('USER_MAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'default from email'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 now = datetime.now()
-
 BATON = {
     'SITE_HEADER': 'Mapanare',
     'SITE_TITLE': 'Mapanare',
@@ -210,7 +283,7 @@ BATON = {
     'SUPPORT_HREF': 'https://github.com/otto-torino/django-baton/issues',
     'COPYRIGHT': f'copyright © {now.year} <a href="htt://google.es">Mapanare Org</a>',
     # noqa
-    'POWERED_BY': '<a href="http://google.es">Paraiso Creativo</a>',
+    'POWERED_BY': '<a href="http://google.es">Mapanare.es</a>',
     'CONFIRM_UNSAVED_CHANGES': True,
     'SHOW_MULTIPART_UPLOADING': True,
     'ENABLE_IMAGES_PREVIEW': True,

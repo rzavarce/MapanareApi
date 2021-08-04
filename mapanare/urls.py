@@ -16,16 +16,35 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, include
+from django.conf.urls import url
 
-PREFIX_API = "/api/v1/"
+from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import refresh_jwt_token
+from rest_framework_jwt.views import verify_jwt_token
+
+PREFIX_API = "api/v1/"
 
 urlpatterns = [
-    path(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     # path('admin/', admin.site.urls),
     path('baton/', include('baton.urls')),
 
-    path('api/', include('subscriptions.urls')),
-    path('api/v1/', include('devices.urls')),
+    # JWT auth
+    # url(PREFIX_API + "/auth/obtain_token/", obtain_jwt_token),
+    url(PREFIX_API + 'auth-jwt/', obtain_jwt_token),
+    url(r'^auth-jwt-refresh/', refresh_jwt_token),
+    url(r'^auth-jwt-verify/', verify_jwt_token),
+    url(PREFIX_API + 'password_reset/',
+        include('django_rest_passwordreset.urls', namespace='password_reset')),
+
+    path(PREFIX_API, include('sessions.urls')),
+    path(PREFIX_API, include('register.urls')),
+    path(PREFIX_API, include('devices.urls')),
+    path(PREFIX_API, include('clients.urls')),
+    path(PREFIX_API, include('profiles.urls')),
+    path(PREFIX_API, include('traces.urls')),
+    path(PREFIX_API, include('vehicles.urls')),
+    path(PREFIX_API, include('vehicles_groups.urls')),
 ]
 
 urlpatterns += i18n_patterns(

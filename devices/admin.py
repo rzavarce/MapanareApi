@@ -8,8 +8,8 @@ from .models import Device
 # Register your models here.
 
 class DeviceAdmin(admin.ModelAdmin):
-    list_display = (
-    'device_imei', 'sim_phone', 'type_device', 'model_device', 'status',)
+    list_display = ('device_imei', 'sim_phone', 'type_device', 'model_device',
+                    'status',)
     list_filter = ('device_imei', 'type_device', 'model_device', 'status',)
     ordering = ('device_imei',)
     search_fields = ('device_imei',)

@@ -14,6 +14,8 @@ from django.forms.utils import ErrorList
 from django.http import HttpResponse
 from .forms import LoginForm, SignUpForm
 
+from django.core.mail import EmailMessage
+
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -61,3 +63,28 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg" : msg, "success" : success })
+
+
+def send_email():
+    email = EmailMessage('Asunto',
+                         'El contenido del mensaje: Ola hamijos, como mando '
+                         'correos en Phyton?',
+                         to=['rogerzavarce@gmail.com'],
+                         from_email=['mapanaredev@gmail.com'])
+    email.send()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
